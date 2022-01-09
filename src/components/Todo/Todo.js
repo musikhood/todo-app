@@ -22,6 +22,7 @@ function Todo({ id, content, completed, index }) {
               checked={completed}
               onChange={() => changeCompleted(id)}
             />
+            <span onClick={() => changeCompleted(id)}></span>
           </div>
           <div className="Todo__todo-container">
             <p

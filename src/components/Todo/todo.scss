@@ -19,58 +19,68 @@
     padding: 20px 0;
   }
   &__todo {
+    transform: translateY(2px);
     word-break: break-all;
     line-height: 2.5rem;
     transition: color 0.5s;
+
     &--completed {
       text-decoration: line-through;
       color: var(--color-completed);
     }
   }
   &__checkbox-box {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: var(--border);
+    border-radius: 50%;
+    position: relative;
+    transition: background-color 0.5s;
+    &:hover span::after {
+      opacity: 1;
+    }
+    span {
+      cursor: pointer;
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        background-image: url("../../images/icon-check.svg"),
+          var(--check-background);
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 11;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 2rem;
+        height: 2rem;
+        background-color: var(--bg-list);
+        border-radius: 50%;
+        opacity: 1;
+        transition: opacity 0.5s, background-color 0.5s;
+      }
+    }
   }
   &__checkbox {
-    // appearance: none;
-    position: relative;
-    cursor: pointer;
-    &::after {
-      content: "";
-      position: absolute;
-      z-index: 10;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background-color: var(--border);
-      transition: background-color 0.5s;
-    }
-    &:hover::after,
-    &:checked::after {
-      background-image: url("../../images/icon-check.svg"),
-        var(--check-background);
-      background-repeat: no-repeat;
-      background-position: center;
+    appearance: none;
+    &:checked + span::after {
+      opacity: 1;
     }
 
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: 11;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 2.1rem;
-      height: 2.1rem;
-      background-color: var(--bg-list);
-      border-radius: 50%;
-      opacity: 1;
-      transition: opacity 0.5s, background-color 0.5s;
-    }
-    &:checked::before {
+    &:checked + span::before {
       opacity: 0;
     }
   }

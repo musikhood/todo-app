@@ -66,13 +66,13 @@ body {
     align-items: center;
     border-radius: 7px;
     height: 6rem;
-    padding: 0 2rem;
+    padding: 0 2.6rem;
     margin-bottom: 2rem;
     transition: background-color 0.5s;
   }
   &__circle {
-    min-width: 2.5rem;
-    min-height: 2.5rem;
+    min-width: 2.4rem;
+    min-height: 2.4rem;
     margin-right: 2rem;
     background-color: var(--bg-list);
 
@@ -83,7 +83,6 @@ body {
   }
   &__input {
     flex: 1;
-    transform: translateY(2px);
     font-size: 1.8rem;
     font-family: var(--default-font);
     background-color: transparent;
