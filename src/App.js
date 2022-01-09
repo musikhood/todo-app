@@ -55,9 +55,18 @@ export default function App() {
   }
 
   function clearCompleted() {
-    const array = [...todoList];
-    const newArray = array.filter((item) => item.completed !== true);
-    setTodoList(newArray);
+    const newArray2 = [...todoList].filter((item) => item.completed === true);
+    newArray2.forEach(({ id }) => {
+      document.getElementById(id).classList.remove("Todo--active");
+    });
+
+    setTimeout(() => {
+      setTodoList((prevValue) => {
+        const array = [...prevValue];
+        const newArray = array.filter((item) => item.completed !== true);
+        return newArray;
+      });
+    }, 500);
   }
 
   function changeTheme() {
