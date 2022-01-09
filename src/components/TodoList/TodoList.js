@@ -5,31 +5,22 @@ import Todo from "../Todo/Todo";
 import "./todoList.scss";
 
 function TodoList() {
-  const { todoList, setTodoList, clearCompleted } = useContext(AppContext);
-
-  const [todoListCopy, setTodoListCopy] = useState(todoList);
-  const [saveDnd, setSaveDnd] = useState(false);
+  const { todoList, setTodoList, clearCompleted, setShow } =
+    useContext(AppContext);
 
   useEffect(() => {
     showTodoList("all");
   }, []);
 
-  useEffect(() => {
-    setTodoListCopy(todoList);
-  }, [todoList]);
-
   function handleOnDragEnd(result) {
     if (!result.destination) return;
     if (result.destination.index === result.source.index) return;
 
-    const items = [...todoListCopy];
+    const items = [...todoList];
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    setTodoListCopy(items);
-    if (saveDnd) {
-      setTodoList(items);
-    }
+    setTodoList(items);
   }
   function removeActiveClass() {
     document
@@ -39,26 +30,15 @@ function TodoList() {
   function showTodoList(name) {
     removeActiveClass();
     if (name === "all") {
-      const array = [...todoList];
-      setTodoListCopy(array);
-      setSaveDnd(true);
-
+      setShow("all");
       document.getElementById("all").classList.add("active");
     }
     if (name === "active") {
-      const array = [...todoList];
-      const newArray = array.filter((item) => item.completed === false);
-      setTodoListCopy(newArray);
-      setSaveDnd(false);
-
+      setShow("active");
       document.getElementById("active").classList.add("active");
     }
     if (name === "completed") {
-      const array = [...todoList];
-      const newArray = array.filter((item) => item.completed === true);
-      setTodoListCopy(newArray);
-      setSaveDnd(false);
-
+      setShow("completed");
       document.getElementById("completed").classList.add("active");
     }
   }
@@ -73,7 +53,7 @@ function TodoList() {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {todoListCopy.map(({ id, content, completed }, index) => (
+              {todoList.map(({ id, content, completed }, index) => (
                 <Todo
                   key={id}
                   id={id}

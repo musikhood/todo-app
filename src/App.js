@@ -12,8 +12,11 @@ export default function App() {
 
   const [todoList, setTodoList] = useState([]);
 
+  const [show, setShow] = useState("all");
+
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+
     if (storedTodos) {
       setTodoList(storedTodos);
     }
@@ -41,9 +44,14 @@ export default function App() {
   }
 
   function deleteTodo(id) {
-    const array = [...todoList];
-    const newArray = array.filter((item) => item.id !== id);
-    setTodoList(newArray);
+    document.getElementById(id).classList.remove("Todo--active");
+    setTimeout(() => {
+      setTodoList((prevValue) => {
+        const array = [...prevValue];
+        const newArray = array.filter((item) => item.id !== id);
+        return newArray;
+      });
+    }, 500);
   }
 
   function clearCompleted() {
@@ -81,6 +89,8 @@ export default function App() {
           changeCompleted,
           deleteTodo,
           clearCompleted,
+          show,
+          setShow,
         }}
       >
         <MainContainer />

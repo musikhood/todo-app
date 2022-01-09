@@ -1,17 +1,30 @@
 .Todo {
-  min-height: 6rem;
+  // min-height: 6rem;
   width: 100%;
-
+  overflow: hidden;
   background-color: var(--bg-list);
-  border-bottom: 2px solid var(--border);
+
   display: flex;
   align-items: center;
   gap: 2rem;
   padding: 0 2.6rem;
   font-size: 1.8rem;
 
-  transition: background-color 0.5s, border-bottom 0.5s;
+  transition: background-color 0.5s, max-height 0.5s ease-out,
+    border-bottom 0.5s;
 
+  max-height: 0;
+  border-bottom: 0px solid transparent;
+  &--active {
+    max-height: 50rem;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.5s, max-height 0.5s ease-in,
+      border-bottom 0.5s;
+  }
+  &--fadeIn {
+    max-height: 0 !important;
+    border-bottom: 0px solid transparent !important;
+  }
   &__todo-container {
     color: var(--color-list);
     transition: color 0.5s;
