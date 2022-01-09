@@ -1,0 +1,87 @@
+.Todo {
+  min-height: 6rem;
+  width: 100%;
+
+  background-color: var(--bg-list);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2.6rem;
+  font-size: 1.8rem;
+
+  transition: background-color 0.5s, border-bottom 0.5s;
+
+  &__todo-container {
+    color: var(--color-list);
+    transition: color 0.5s;
+    flex: 1;
+    padding: 20px 0;
+  }
+  &__todo {
+    word-break: break-all;
+    line-height: 2.5rem;
+    transition: color 0.5s;
+    &--completed {
+      text-decoration: line-through;
+      color: var(--color-completed);
+    }
+  }
+  &__checkbox-box {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  &__checkbox {
+    // appearance: none;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: var(--border);
+      transition: background-color 0.5s;
+    }
+    &:hover::after,
+    &:checked::after {
+      background-image: url("../../images/icon-check.svg"),
+        var(--check-background);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 11;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 2.1rem;
+      height: 2.1rem;
+      background-color: var(--bg-list);
+      border-radius: 50%;
+      opacity: 1;
+      transition: opacity 0.5s, background-color 0.5s;
+    }
+    &:checked::before {
+      opacity: 0;
+    }
+  }
+  &__close-box {
+    width: 1.8rem;
+    height: 1.8rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  &:hover &__close-box {
+    opacity: 1;
+  }
+}

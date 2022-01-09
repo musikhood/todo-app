@@ -1,0 +1,107 @@
+.header {
+  background-image: var(--bg-image-light), var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 300px, 0 0;
+  height: 300px;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: background-position 0.5s;
+  @media screen and (max-width: 650px) {
+    background-image: var(--bg-image-mobile-light), var(--bg-image-mobile);
+    height: 200px;
+    background-position: 0 200px, 0 0;
+  }
+  &--active {
+    background-position: 0 0, 0 -300px;
+    @media screen and (max-width: 650px) {
+      background-position: 0 0, 0 -200px;
+    }
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: var(--default-font);
+  background-color: var(--bg);
+
+  transition: background-color 0.5s;
+}
+
+.main {
+  min-height: 20rem;
+  margin-top: 10rem;
+  margin-bottom: 6rem;
+  width: 60rem;
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 650px) {
+    width: 85vw;
+    margin-top: 6rem;
+  }
+
+  &__top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  &__h1 {
+    font-size: 4rem;
+    letter-spacing: 1rem;
+    color: white;
+  }
+  &__theme-switch {
+    cursor: pointer;
+  }
+  &__add-todo {
+    width: 100%;
+    background-color: var(--bg-list);
+    display: flex;
+    align-items: center;
+    border-radius: 7px;
+    height: 6rem;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    transition: background-color 0.5s;
+  }
+  &__circle {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    margin-right: 2rem;
+    background-color: var(--bg-list);
+
+    border-radius: 50%;
+    border: 2px solid var(--border);
+
+    transition: background-color 0.5s, border 0.5s;
+  }
+  &__input {
+    flex: 1;
+    transform: translateY(2px);
+    font-size: 1.8rem;
+    font-family: var(--default-font);
+    background-color: transparent;
+    color: var(--color-list);
+    border: none;
+    transition: color 0.5s;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.dnd-text {
+  font-size: 1.3rem;
+  color: var(--color-options);
+  text-align: center;
+  margin-top: 3rem;
+  @media screen and (max-width: 400px) {
+    font-size: 1.7rem;
+  }
+}
