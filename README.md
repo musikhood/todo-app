@@ -1,5 +1,7 @@
 # Todo App
 
+<img src="./giphy (1).gif" alt="gif"/>
+
 ---
 
 ## Description
